@@ -1,26 +1,66 @@
-
-import './App.css'
+import { Autocomplete, Button, Container, CssBaseline, Drawer, Fab, Grid, TextField } from '@mui/material';
+import BottomNavigationBar from './components/BottomNavigationBar';
 import ListComponent from './components/ListComponent';
+import { Add } from '@mui/icons-material';
+import { useState } from 'react';
 
-const data = [
-  { number: 1, text: 'Item A', quantity: 5, category: 'Category A', price: 10.99 },
-  { number: 2, text: 'Item B', quantity: 3, category: 'Category B', price: 15.99 },
-  { number: 3, text: 'Item C', quantity: 2, category: 'Category C', price: 8.49 },
-  { number: 4, text: 'Item D', quantity: 7, category: 'Category A', price: 12.99 },
-  { number: 5, text: 'Item E', quantity: 4, category: 'Category B', price: 18.99 },
-  { number: 6, text: 'Item F', quantity: 6, category: 'Category C', price: 9.99 },
-  { number: 7, text: 'Item G', quantity: 1, category: 'Category A', price: 14.49 },
-  { number: 8, text: 'Item H', quantity: 8, category: 'Category B', price: 22.99 },
-  { number: 9, text: 'Item I', quantity: 3, category: 'Category C', price: 11.49 },
-  { number: 10, text: 'Item J', quantity: 5, category: 'Category A', price: 16.99 },
-];
-
+const data = ["item 1", "item 2", "item 3", "item 4", "item 5", "item 6", "item 7"];
 
 function App() {
+  const [open, setOpen] = useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
-    <ListComponent />
+    <>
+      <CssBaseline />
+      <ListComponent />
+      <BottomNavigationBar />
+      <Drawer
+        anchor={"bottom"}
+        open={open}
+        onClose={handleClose}
+      >
+        <Container sx={{ padding: 2, marginBottom: 25 }}>
+          <Grid container spacing={1}>
+            <Grid item xs={8}>
+              <Autocomplete
+                options={data}
+                renderInput={(params) => <TextField {...params} label="Category" />}
+                freeSolo
+                disableClearable
+                defaultValue={data[0]}
+                disablePortal
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField type='number' label="Quantity" />
+            </Grid>
+            <Grid item xs={12}>
+              <Autocomplete
+                options={data}
+                renderInput={(params) => <TextField {...params} label="Item" />}
+                freeSolo
+                autoSelect
+                disablePortal
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button variant="contained">add</Button>
+            </Grid>
+          </Grid>
+        </Container>
+      </Drawer>
+      <Fab color="secondary" sx={{ position: "fixed", bottom: 60, right: 10 }} onClick={handleClickOpen}>
+        <Add />
+      </Fab>
+    </>
   )
 }
 
-export default App
+export default App;
