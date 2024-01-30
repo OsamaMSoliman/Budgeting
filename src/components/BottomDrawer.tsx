@@ -1,7 +1,6 @@
-import { Autocomplete, Button, Container, Drawer, Grid, TextField } from '@mui/material';
-import { useState } from 'react';
-
-const data = ["item 1", "item 2", "item 3", "item 4", "item 5", "item 6", "item 7"];
+import { Button, Container, Drawer, Grid, TextField } from '@mui/material';
+import FreeSoloCreateOption from './FreeSoloCreateOption';
+import FreeSoloCreateOptionDialog from './FreeSoloCreateOptionDialog';
 
 interface IBottomDrawerProps {
     drawerState: boolean;
@@ -15,29 +14,16 @@ export function BottomDrawer({ drawerState, setDrawerState }: IBottomDrawerProps
             open={drawerState}
             onClose={() => setDrawerState(false)}
         >
-            <Container sx={{ padding: 2, marginBottom: 25 }}>
+            <Container sx={{ padding: 2 }}>
                 <Grid container spacing={1}>
                     <Grid item xs={8}>
-                        <Autocomplete
-                            options={data}
-                            renderInput={(params) => <TextField {...params} label="Category" />}
-                            freeSolo
-                            disableClearable
-                            defaultValue={data[0]}
-                            disablePortal
-                        />
+                        <FreeSoloCreateOptionDialog />
                     </Grid>
                     <Grid item xs={4}>
                         <TextField type='number' label="Quantity" />
                     </Grid>
                     <Grid item xs={12}>
-                        <Autocomplete
-                            options={data}
-                            renderInput={(params) => <TextField {...params} label="Item" />}
-                            freeSolo
-                            autoSelect
-                            disablePortal
-                        />
+                        <FreeSoloCreateOption />
                     </Grid>
                     <Grid item xs={12}>
                         <Button variant="contained">add</Button>

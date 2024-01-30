@@ -40,6 +40,8 @@ export default function FreeSoloCreateOptionDialog() {
     return (
         <React.Fragment>
             <Autocomplete
+                // disableClearable TODO: value has to be NOT null
+                defaultValue={top100Films[0]}
                 value={value}
                 onChange={(event, newValue) => {
                     if (typeof newValue === 'string') {
@@ -91,7 +93,7 @@ export default function FreeSoloCreateOptionDialog() {
                 renderOption={(props, option) => <li {...props}>{option.title}</li>}
                 sx={{ width: 300 }}
                 freeSolo
-                renderInput={(params) => <TextField {...params} label="Free solo dialog" />}
+                renderInput={(params) => <TextField {...params} label="Category" />}
             />
             <Dialog open={open} onClose={handleClose}>
                 <form onSubmit={handleSubmit}>
