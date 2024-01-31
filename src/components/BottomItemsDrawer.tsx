@@ -2,12 +2,12 @@ import { Button, Container, Drawer, Grid, TextField } from '@mui/material';
 import FreeSoloCreateOption from './FreeSoloCreateOption';
 import FreeSoloCreateOptionDialog from './FreeSoloCreateOptionDialog';
 
-interface IBottomDrawerProps {
+interface IBottomItemsDrawerProps {
     drawerState: boolean;
     setDrawerState(newDrawerState: boolean): void;
 }
 
-export function BottomDrawer({ drawerState, setDrawerState }: IBottomDrawerProps) {
+export default function ({ drawerState, setDrawerState }: IBottomItemsDrawerProps) {
     return (
         <Drawer
             anchor={"bottom"}

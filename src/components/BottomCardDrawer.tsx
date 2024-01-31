@@ -5,7 +5,7 @@ interface IBottomCardDrawerProps {
     setDrawerState(newDrawerState: boolean): void;
 }
 
-export function BottomCardDrawer({ drawerState, setDrawerState }: IBottomCardDrawerProps) {
+export default function ({ drawerState, setDrawerState }: IBottomCardDrawerProps) {
     return (
         <Drawer
             anchor={"bottom"}
