@@ -1,5 +1,10 @@
-import { List } from '@mui/material';
-import Item from './Item';
+import { useState } from "react";
+import { TabsSerrated } from "../components/TabsSerrated";
+import { Paper } from "@mui/material";
+import BalanceBox from "../components/BalanceBox";
+import List from "../components/List";
+import Card from "../components/Card";
+import Fab from "../components/Fab";
 
 const initialData = [
     { text: 'Pfefferminztee', quantity: 3, category: 'Category B', price: 15.99 },
@@ -18,16 +23,28 @@ const initialData = [
     { text: 'Eier', quantity: 5, category: 'Category A', price: 0 },
 ];
 
-const ListComponent: React.FC = () => (
-    <List>
-        {initialData.map((item, index) => (
-            <Item
-                key={index}
-                index={index}
-                {...item}
-            />
-        ))}
-    </List>
-);
+export default function () {
+    const [open, setOpen] = useState(false);
 
-export default ListComponent;
+    // const nodes = initialData.map((item, index) => (
+    //     <Item
+    //         key={index}
+    //         index={index}
+    //         {...item}
+    //     />
+    // ));
+
+
+    const nodes = Array.from({ length: 10 }, (item, key) => (<Card key={key} dateOfCreation={new Date()} />));
+
+    return (
+        <>
+            <TabsSerrated />
+            <Paper elevation={24} sx={{ m: 2 }}>
+                <BalanceBox />
+            </Paper>
+            <List nodes={nodes} />
+            <Fab onClick={() => setOpen(true)} />
+        </>
+    );
+}

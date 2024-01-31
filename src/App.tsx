@@ -1,20 +1,14 @@
-import { CssBaseline, Fab } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 import BottomNavigationBar from './components/BottomNavigationBar';
-import { Add } from '@mui/icons-material';
-import { useState } from 'react';
-import { Home } from './pages/Home';
+import CardsListPage from "./pages/CardsListPage";
 
 function App() {
-  const [open, setOpen] = useState(false);
 
   return (
     <>
       <CssBaseline />
-      <Home />
+      <CardsListPage />
       <BottomNavigationBar />
-      <Fab color="secondary" sx={{ position: "fixed", bottom: 60, right: 10 }} onClick={() => setOpen(true)}>
-        <Add />
-      </Fab >
     </>
   )
 }
