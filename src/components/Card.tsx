@@ -2,16 +2,16 @@ import { Box, Card, CardActions, CardContent, CardHeader, Typography } from "@mu
 import BalanceBox from "./BalanceBox";
 
 interface CardProps {
-    // total: number,
-    // budget: number,
+    total: number,
+    budget: number,
     dateOfCreation: Date,
     dateOfFulfillment?: Date,
 }
-export default function ({ dateOfCreation, dateOfFulfillment }: CardProps) {
+export default function ({ dateOfCreation, dateOfFulfillment, ...rest }: CardProps) {
     return (
         <Card sx={{ m: 2, minWidth: 275 }}>
             <CardContent>
-                <BalanceBox />
+                <BalanceBox {...rest} />
             </CardContent>
             <Box display="flex" justifyContent="space-evenly">
                 <Typography variant="body2">Created on: {dateOfCreation.toLocaleDateString()}</Typography>
