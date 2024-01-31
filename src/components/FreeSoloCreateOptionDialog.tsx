@@ -96,10 +96,11 @@ export default function FreeSoloCreateOptionDialog() {
             />
             <Dialog open={open} onClose={handleClose}>
                 <form onSubmit={handleSubmit}>
-                    <DialogTitle>Add a new film</DialogTitle>
+                    <DialogTitle>Add a new Category</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            Did you miss any film in our list? Please, add it!
+                            confirm adding <i>New</i> category:
+                            <b> {dialogValue.title} </b>
                         </DialogContentText>
                         <TextField
                             autoFocus
@@ -112,22 +113,8 @@ export default function FreeSoloCreateOptionDialog() {
                                     title: event.target.value,
                                 })
                             }
-                            label="title"
+                            label="New category"
                             type="text"
-                            variant="standard"
-                        />
-                        <TextField
-                            margin="dense"
-                            id="name"
-                            value={dialogValue.year}
-                            onChange={(event) =>
-                                setDialogValue({
-                                    ...dialogValue,
-                                    year: event.target.value,
-                                })
-                            }
-                            label="year"
-                            type="number"
                             variant="standard"
                         />
                     </DialogContent>
