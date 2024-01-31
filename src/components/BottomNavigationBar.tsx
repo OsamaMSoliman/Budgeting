@@ -1,7 +1,7 @@
 import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
 import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import { useState } from 'react';
 
 function BottomNavigationBar() {
@@ -15,9 +15,9 @@ function BottomNavigationBar() {
                     setValue(newValue);
                 }}
             >
-                <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-                <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-                <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+                <BottomNavigationAction label="Recent list" icon={<RestoreIcon />} />
+                <BottomNavigationAction label="Cards" icon={<FormatListBulletedIcon />} />
+                <BottomNavigationAction label="Analytics" icon={<QueryStatsIcon />} />
             </BottomNavigation>
         </Paper>
     );
