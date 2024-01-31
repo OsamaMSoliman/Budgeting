@@ -91,7 +91,6 @@ export default function FreeSoloCreateOptionDialog() {
                 clearOnBlur
                 handleHomeEndKeys
                 renderOption={(props, option) => <li {...props}>{option.title}</li>}
-                sx={{ width: 300 }}
                 freeSolo
                 renderInput={(params) => <TextField {...params} label="Category" />}
             />
