@@ -26,7 +26,7 @@ export default function ({ drawerState, setDrawerState }: IBottomItemsDrawerProp
                         <FreeSoloCreateOption />
                     </Grid>
                     <Grid item xs={12}>
-                        <Button variant="contained">add</Button>
+                        <Button fullWidth size='large' variant="contained">add</Button>
                     </Grid>
                 </Grid>
             </Container>
