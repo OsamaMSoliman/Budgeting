@@ -14,9 +14,8 @@ function BottomNavigationBar() {
                     setValue(newValue);
                 }}
             >
-
-                <BottomNavigationAction label="Checkout" icon={<ChecklistIcon />} />
-                <BottomNavigationAction label="Export/Import" icon={<ImportExportIcon />} />
+                <BottomNavigationAction label="Checkout" icon={<ChecklistIcon fontSize={value === 0 ? "large" : "medium"} />} />
+                <BottomNavigationAction label="Export/Import" icon={<ImportExportIcon fontSize={value === 1 ? "large" : "medium"} />} />
             </BottomNavigation>
         </Paper>
     );
