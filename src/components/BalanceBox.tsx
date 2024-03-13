@@ -1,15 +1,18 @@
-import { Paper, Typography } from "@mui/material";
-import React from "react";
+import { AppBar, Paper, Toolbar, Typography } from "@mui/material";
+import { useItemStore } from "../store/useItemStore";
 
-interface IBalanceBoxProps {
-    budget: number,
-    total: number,
-    isLarge?: boolean,
-}
+export default () => {
+    const { total, budget } = useItemStore();
 
-const BalanceBox: React.FC<IBalanceBoxProps> = ({ budget, total, isLarge = false }) => (
-    <Paper elevation={24} sx={{ p: 1 }}>
-        <Typography variant={isLarge ? "h4" : "body1"} align="center">{total} € / {budget} € </Typography>
-    </Paper>
-);
-export default BalanceBox;
+    const color = total < budget ? "success" : total == budget ? "warning" : "error";
+
+    return (<>
+        <AppBar position="sticky" elevation={24} color={color}>
+            <Toolbar >
+                <Paper sx={{ p: 1, m: 1, flexGrow: 1 }}>
+                    <Typography variant="h4" align="center">{total} € / {budget} € </Typography>
+                </Paper>
+            </Toolbar>
+        </AppBar>
+    </>);
+};
