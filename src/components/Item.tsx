@@ -15,10 +15,10 @@ interface IProps {
     onClick(item: IItem): void;
 }
 
-export default ({ name, quantity, price, onClick }: IItem & IProps) => (
+export default ({ id, name, quantity, price, onClick }: IItem & IProps) => (
     <Paper elevation={3} sx={{ margin: 2 }}>
         <ListItem disablePadding>
-            <ListItemButton sx={{ p: 0 }} onClick={() => onClick({ name, quantity, price })}>
+            <ListItemButton sx={{ p: 0 }} onClick={() => onClick({ id, name, quantity, price })}>
                 <Grid container alignItems="center" gap={1} padding={0}>
                     <Grid item xs="auto" paddingLeft={1}>
                         {price > 0 ?
@@ -40,7 +40,7 @@ export default ({ name, quantity, price, onClick }: IItem & IProps) => (
                             }}
                             secondary={name}
                             secondaryTypographyProps={{
-                                variant:"caption",
+                                variant: "caption",
                                 noWrap: true,
                             }}
                         />

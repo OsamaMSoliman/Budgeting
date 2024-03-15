@@ -1,35 +1,63 @@
 import { Button, Container, Drawer, Grid, TextField } from '@mui/material';
-import FreeSoloCreateOption from './FreeSoloCreateOption';
-import FreeSoloCreateOptionDialog from './FreeSoloCreateOptionDialog';
+import AutoCompleteTextField from './AutoCompleteTextField';
+import { IItem, useItemStore } from '../store/useItemStore';
 
-interface IBottomItemsDrawerProps {
-    drawerState: boolean;
-    setDrawerState(newDrawerState: boolean): void;
+interface IProps {
+    isOpen: boolean;
+    close(): void;
+    selectedItem?: IItem;
 }
 
-export default function ({ drawerState, setDrawerState }: IBottomItemsDrawerProps) {
+
+export default function ({ isOpen, close, selectedItem }: IProps) {
+    const { upsertItem, count } = useItemStore();
+
+    const handleAdd = (event: React.FormEvent) => {
+        event.preventDefault();
+        const formData = new FormData(event.target as HTMLFormElement);
+
+        upsertItem(selectedItem ? {
+            ...selectedItem,
+            price: Number(formData.get('price')),
+        } : {
+            id: count(),
+            name: formData.get('itemName') as string,
+            quantity: Number(formData.get('quantity')),
+            price: 0,
+        });
+
+        close();
+    };
+
     return (
         <Drawer
             anchor={"bottom"}
-            open={drawerState}
-            onClose={() => setDrawerState(false)}
+            open={isOpen}
+            onClose={close}
         >
             <Container sx={{ padding: 2 }}>
-                <Grid container spacing={1}>
-                    <Grid item xs={8}>
-                        <FreeSoloCreateOptionDialog />
+                <form onSubmit={handleAdd}>
+                    <Grid container spacing={1}>
+                        {!selectedItem ? (
+                            <>
+                                <Grid item xs={9}>
+                                    <AutoCompleteTextField name="itemName" type="search" label="Item name" />
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <TextField name="quantity" type="number" label="Quantity" defaultValue={1} />
+                                </Grid>
+                            </>
+                        ) : (
+                            <Grid item xs={12}>
+                                <TextField name="price" type="number" label="Price" fullWidth />
+                            </Grid>
+                        )}
+                        <Grid item xs={12}>
+                            <Button fullWidth size='large' variant="contained" type="submit">add</Button>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={4}>
-                        <TextField type='number' label="Quantity" />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <FreeSoloCreateOption />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Button fullWidth size='large' variant="contained" onClick={() => setDrawerState(false)}>add</Button>
-                    </Grid>
-                </Grid>
+                </form>
             </Container>
         </Drawer>
-    )
+    );
 }

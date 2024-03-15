@@ -40,7 +40,7 @@ export const useItemStore = create<IStoreState & IStoreActions>()(
                     setTotal: (total: number) => set({ total }),
                     setBudget: (budget: number) => set({ budget }),
                     // upsertItem: (item: IItem) => get().items[item.id] = item,
-                    upsertItem: (item: IItem) => set(state => { state.items[item.id] = item }),
+                    upsertItem: (item: IItem) => set(state => state.items[item.id] = item),
                     // deleteItem: (item: IItem) => delete get().items[item.id],
                     deleteItem: (item: IItem) => set(state => delete state.items[item.id]),
                     count: () => get().items.length,
