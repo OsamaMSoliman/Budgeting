@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { TabsSerrated } from "../components/TabsSerrated";
+import { TabsSerrated } from "./TabsSerrated";
 import { Paper } from "@mui/material";
 import BalanceBox from "../components/BalanceBox";
 import List from "../components/List";
-import Card from "../components/Card";
+import Card from "./Card";
 import Fab from "../components/Fab";
-import BottomCardDrawer from "../components/BottomCardDrawer";
+import BottomCardDrawer from "./BottomCardDrawer";
 
 export default () => {
     const [open, setOpen] = useState(false);
