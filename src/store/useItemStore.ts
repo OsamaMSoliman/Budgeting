@@ -1,4 +1,6 @@
 import { create } from "zustand";
+import { devtools, persist } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 
 interface IStoreState {
     total: number;
@@ -13,8 +15,6 @@ interface IStoreActions {
     deleteItem: (item: IItem) => void;
     count: () => number;
     clear: () => void;
-    save: () => void;
-    load: () => void;
 }
 
 export interface IItem {
@@ -24,8 +24,6 @@ export interface IItem {
     price: number;
 }
 
-const LOCAL_STORAGE_KEY = "BUDGETING_CHECKOUT_KEY";
-
 const initialState: IStoreState = {
     total: 0,
     budget: 0,
@@ -34,21 +32,23 @@ const initialState: IStoreState = {
 
 // const useItemStore: UseBoundStore<StoreApi<IStoreState & IStoreActions>>
 export const useItemStore = create<IStoreState & IStoreActions>()(
-    (set, get) => ({
-        ...initialState,
-        setTotal: (total: number) => set({ total }),
-        setBudget: (budget: number) => set({ budget }),
-        upsertItem: (item: IItem) => {
-            const index = get().items.findIndex(i => i.id === item.id);
-            set({
-                items: index === -1 ? [...get().items, { ...item }]
-                    : [...get().items.slice(0, index), { ...item }, ...get().items.slice(index + 1)]
-            });
-        },
-        deleteItem: (item: IItem) => set({ items: get().items.filter(i => i.id !== item.id) }),
-        count: () => get().items.length,
-        clear: () => set(initialState),
-        save: () => localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(get())),
-        load: () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || 'null') ?? initialState,
+    persist(
+        immer(
+            devtools(
+                (set, get) => ({
+                    ...initialState,
+                    setTotal: (total: number) => set({ total }),
+                    setBudget: (budget: number) => set({ budget }),
+                    // upsertItem: (item: IItem) => get().items[item.id] = item,
+                    upsertItem: (item: IItem) => set(state => { state.items[item.id] = item }),
+                    // deleteItem: (item: IItem) => delete get().items[item.id],
+                    deleteItem: (item: IItem) => set(state => delete state.items[item.id]),
+                    count: () => get().items.length,
+                    clear: () => set(initialState),
+                }), {
+                enabled: import.meta.env.DEV
+            })
+        ), {
+        name: "BUDGETING_CHECKOUT_KEY"
     })
 );
