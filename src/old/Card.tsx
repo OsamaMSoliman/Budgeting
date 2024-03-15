@@ -1,5 +1,5 @@
 import { Box, Card, CardActions, CardContent, CardHeader, Typography } from "@mui/material";
-import BalanceBox from "./BalanceBox";
+import BalanceBox from "../components/BalanceBox";
 
 interface CardProps {
     total: number,
