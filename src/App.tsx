@@ -9,6 +9,7 @@ export default () => (
     <Routes>
       <Route element={<AppLayout />}>
         <Route path="/" element={<ItemsPage />} />
+        <Route path="/items" element={<ItemsPage />} />
         <Route path="/export" element={<ExportImportPage />} />
         <Route path="/import" element={<ExportImportPage />} />
       </Route>
