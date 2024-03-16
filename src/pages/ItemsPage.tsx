@@ -11,7 +11,7 @@ export default () => {
     const [selectedItem, setSelectedItem] = useState<IItem>();
     const { items } = useItemStore();
 
-    const handleItemClicked = (item: IItem) => {
+    const handleItemClicked = (item?: IItem) => {
         setSelectedItem(item);
         setIsBottomDrawerOpen(true);
     };
@@ -28,7 +28,7 @@ export default () => {
         <>
             <BalanceBox />
             <List nodes={nodes} />
-            <Fab onClick={() => setIsBottomDrawerOpen(true)} />
+            <Fab onClick={() => handleItemClicked(undefined)} />
             <BottomItemsDrawer close={() => setIsBottomDrawerOpen(false)} isOpen={isBottomDrawerOpen} selectedItem={selectedItem} />
         </>
     );
