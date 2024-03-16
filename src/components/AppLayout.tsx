@@ -3,7 +3,9 @@ import { Outlet } from 'react-router-dom';
 
 export default () => (
     <>
-        <Outlet />
+        <div style={{ marginBottom: "56px" }}>
+            <Outlet />
+        </div>
         <BottomNavigationBar />
     </>
 );
