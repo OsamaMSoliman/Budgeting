@@ -49,7 +49,8 @@ export default function ({ isOpen, close, selectedItem }: IProps) {
                             </>
                         ) : (
                             <Grid item xs={12}>
-                                <TextField name="price" type="number" label="Price" fullWidth />
+                                <TextField name="price" type="number" label="Price" fullWidth
+                                    InputProps={{ endAdornment: "€" }} inputProps={{ step: 0.01 }} />
                             </Grid>
                         )}
                         <Grid item xs={12}>
