@@ -3,17 +3,16 @@ import { devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 interface IStoreState {
-    total: number;
     budget: number;
     items: Array<IItem>;
 }
 
 interface IStoreActions {
-    setTotal: (total: number) => void;
     setBudget: (budget: number) => void;
     upsertItem: (item: IItem) => void;
     deleteItem: (item: IItem) => void;
     count: () => number;
+    total: () => number;
     clear: () => void;
 }
 
@@ -25,7 +24,6 @@ export interface IItem {
 }
 
 const initialState: IStoreState = {
-    total: 0,
     budget: 0,
     items: [],
 };
@@ -37,7 +35,6 @@ export const useItemStore = create<IStoreState & IStoreActions>()(
             devtools(
                 (set, get) => ({
                     ...initialState,
-                    setTotal: (total: number) => set({ total }),
                     setBudget: (budget: number) => set({ budget }),
                     // upsertItem: (item: IItem) => get().items[item.id] ? get().items[item.id] = item : get().items.push(item);
                     upsertItem: (item: IItem) => set(state => {
@@ -51,6 +48,7 @@ export const useItemStore = create<IStoreState & IStoreActions>()(
                     // deleteItem: (item: IItem) => delete get().items[item.id],
                     deleteItem: (item: IItem) => set(state => delete state.items[item.id]),
                     count: () => get().items.length,
+                    total: () => get().items.reduce((sum, item) => sum + item.price * item.quantity, 0),
                     clear: () => set(initialState),
                 }), {
                 enabled: import.meta.env.DEV
