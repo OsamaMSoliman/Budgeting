@@ -1,7 +1,6 @@
 {
     "state": {
-        "total": 0,
-        "budget": 50,
+        "budget": 0,
         "items": [
             { "id":0, "name": "Pfefferminztee", "quantity": 3, "price": 15.99 },
             { "id":1, "name": "Passierte Tomaten", "quantity": 1, "price": 0 },
