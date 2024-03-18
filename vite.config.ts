@@ -4,6 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    base: "/Budgeting/",
     plugins: [react(), VitePWA({
         // registerType: 'prompt',
         // includeAssets: ['favicon.ico', "apple-touc-icon.png", "masked-icon.svg"],
