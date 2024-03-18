@@ -54,7 +54,7 @@ export default function ({ isOpen, close, selectedItem }: IProps) {
                             </Grid>
                         )}
                         <Grid item xs={12}>
-                            <Button fullWidth size='large' variant="contained" type="submit">add</Button>
+                            <Button fullWidth size='large' variant="contained" type="submit">{selectedItem ? "update" : "add"}</Button>
                         </Grid>
                     </Grid>
                 </form>

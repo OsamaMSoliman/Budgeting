@@ -1,11 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import Page404 from "./pages/Page404";
 import ItemsPage from "./pages/ItemsPage";
 import ExportImportPage from "./pages/ExportImportPage";
 
 export default () => (
-  <BrowserRouter>
+  <HashRouter>
     <Routes>
       <Route element={<AppLayout />}>
         <Route path="/" element={<ItemsPage />} />
@@ -15,5 +15,5 @@ export default () => (
       </Route>
       <Route path="*" element={<Page404 />} />
     </Routes>
-  </BrowserRouter>
+  </HashRouter>
 );

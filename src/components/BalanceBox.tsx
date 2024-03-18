@@ -27,10 +27,12 @@ export default () => {
                                 onKeyDown={handleKeyDown}
                             />
                             :
-                            <Typography variant="h4" align="center">{total} € / {budget} €</Typography>
+                            <Typography variant="h4" align="center">{round(total)} € / {budget} €</Typography>
                     }
                 </Paper>
             </Toolbar>
         </AppBar >
     );
 };
+
+function round(num: number) { return Math.round((num + Number.EPSILON) * 100) / 100 }
