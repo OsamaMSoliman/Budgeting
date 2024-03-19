@@ -14,6 +14,7 @@ interface IStoreActions {
     count: () => number;
     total: () => number;
     clear: () => void;
+    setStore: (storeState: IStoreState) => void,
 }
 
 export interface IItem {
@@ -50,10 +51,11 @@ export const useItemStore = create<IStoreState & IStoreActions>()(
                     count: () => get().items.length,
                     total: () => get().items.reduce((sum, item) => sum + item.price * item.quantity, 0),
                     clear: () => set(initialState),
+                    setStore: (storeState: IStoreState) => set(storeState),
                 }), {
                 enabled: import.meta.env.DEV
             })
         ), {
-        name: "BUDGETING_CHECKOUT_KEY"
+        name: "BUDGETING_CHECKOUT_KEY",
     })
 );

@@ -4,6 +4,29 @@ import { expect, test } from 'vitest'
 import { useItemStore } from './useItemStore'
 
 
+test('Overwriting state', () => {
+  const item0 = { id: 0, name: "item 1", price: 3, quantity: 2 };
+  const item1 = { id: 1, name: "item 2", price: 2.5, quantity: 4 };
+  const store = {
+    budget: 20,
+    items: [item0, item1],
+  };
+
+  const setStore = useItemStore.getState().setStore;
+  const clear = useItemStore.getState().clear;
+
+  const snapShot = useItemStore.getState();
+  console.log(useItemStore.getState())
+
+  setStore(store);
+  console.log(useItemStore.getState())
+
+  clear();
+  console.log(useItemStore.getState())
+
+  expect(useItemStore.getState()).toStrictEqual(snapShot);
+})
+
 // test('Does Zustand merge the 1st level and not over-write it?', () => {
 //   // const setTotal = useItemStore.getState().setTotal;
 //   const setBudget = useItemStore.getState().setBudget;
@@ -24,6 +47,6 @@ test('Does upsert insert if new and update if already exists?', () => {
   upsertItem(item1);
   expect(count()).toBe(2);
 
-  upsertItem({...item0, price: 9});
-  expect(useItemStore.getState().items[0]).toStrictEqual({...item0, price: 9});
+  upsertItem({ ...item0, price: 9 });
+  expect(useItemStore.getState().items[0]).toStrictEqual({ ...item0, price: 9 });
 })
