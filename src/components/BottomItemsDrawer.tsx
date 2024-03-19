@@ -1,7 +1,9 @@
-import { Button, Container, Drawer, Grid, TextField } from '@mui/material';
-import AutoCompleteTextField from './AutoCompleteTextField';
-import { IItem, upsertItem, useItemStore } from '../store/useItemStore';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Button, Container, Drawer, Grid, IconButton, TextField } from '@mui/material';
+import { IItem, deleteItem, upsertItem, useItemStore } from '../store/useItemStore';
 import newId from '../utils/newId';
+import AutoCompleteTextField from './AutoCompleteTextField';
+
 
 interface IProps {
     isOpen: boolean;
@@ -11,6 +13,7 @@ interface IProps {
 
 
 export default function ({ isOpen, close, selectedItem }: IProps) {
+    const count = useItemStore(state => state.count);
 
     const handleAdd = (event: React.FormEvent) => {
         event.preventDefault();
@@ -29,6 +32,11 @@ export default function ({ isOpen, close, selectedItem }: IProps) {
         close();
     };
 
+    const handleDelete = () => {
+        deleteItem(selectedItem!)
+        close();
+    };
+
     return (
         <Drawer
             anchor={"bottom"}
@@ -37,7 +45,7 @@ export default function ({ isOpen, close, selectedItem }: IProps) {
         >
             <Container sx={{ padding: 2 }}>
                 <form onSubmit={handleAdd}>
-                    <Grid container spacing={1}>
+                    <Grid container spacing={1} alignItems="baseline">
                         {!selectedItem ? (
                             <>
                                 <Grid item xs={9}>
@@ -53,9 +61,17 @@ export default function ({ isOpen, close, selectedItem }: IProps) {
                                     InputProps={{ endAdornment: "€" }} inputProps={{ step: 0.01 }} />
                             </Grid>
                         )}
-                        <Grid item xs={12}>
+                        <Grid item xs>
                             <Button fullWidth size='large' variant="contained" type="submit">{selectedItem ? "update" : "add"}</Button>
                         </Grid>
+                        {
+                            selectedItem &&
+                            <Grid item xs="auto">
+                                <IconButton color="error" sx={{ border: 1 }} onClick={handleDelete}>
+                                    <DeleteIcon fontSize="large" />
+                                </IconButton>
+                            </Grid>
+                        }
                     </Grid>
                 </form>
             </Container>

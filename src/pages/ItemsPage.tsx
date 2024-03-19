@@ -5,7 +5,7 @@ import BottomItemsDrawer from "../components/BottomItemsDrawer";
 import Fab from "../components/Fab";
 import Item from "../components/Item";
 import List from "../components/List";
-import { IItem, deleteItem, useItemStore } from "../store/useItemStore";
+import { IItem, useItemStore } from "../store/useItemStore";
 
 export default () => {
     const [isBottomDrawerOpen, setIsBottomDrawerOpen] = useState<boolean>(false);
@@ -17,14 +17,9 @@ export default () => {
         setIsBottomDrawerOpen(true);
     };
 
-    const handleItemDelete = (item: IItem) => {
-        console.log(item, items);
-        deleteItem(item);
-    };
-
     const nodes = Object.entries(items).map(([id, item]) => (
         <Collapse key={id}>
-            <Item {...item} onClick={handleItemClicked} onSlide={handleItemDelete} />
+            <Item {...item} onClick={handleItemClicked} />
         </Collapse>
     ));
 
