@@ -15,7 +15,7 @@ export default (textFieldProps: IProps) => {
             id="item-name"
             freeSolo
             disableClearable
-            options={items.map((item) => item.name).sort((a, b) => a[0].localeCompare(b[0]))}
+            options={Object.values(items).map((item) => item.name).sort((a, b) => a[0].localeCompare(b[0]))}
             groupBy={(option) => option[0].toUpperCase()}
             renderInput={(params) => <TextField {...params} {...textFieldProps} />}
             renderGroup={(params) => (

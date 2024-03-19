@@ -4,7 +4,7 @@ import { immer } from "zustand/middleware/immer";
 
 interface IStoreState {
     budget: number;
-    items: Array<IItem>;
+    items: Record<string, IItem>;
 }
 
 interface IStoreActions {
@@ -18,7 +18,7 @@ interface IStoreActions {
 }
 
 export interface IItem {
-    id: number;
+    id: string;
     name: string;
     quantity: number;
     price: number;
@@ -26,7 +26,7 @@ export interface IItem {
 
 const initialState: IStoreState = {
     budget: 0,
-    items: [],
+    items: {},
 };
 
 // const useItemStore: UseBoundStore<StoreApi<IStoreState & IStoreActions>>
@@ -37,19 +37,10 @@ export const useItemStore = create<IStoreState & IStoreActions>()(
                 (set, get) => ({
                     ...initialState,
                     setBudget: (budget: number) => set({ budget }),
-                    // upsertItem: (item: IItem) => get().items[item.id] ? get().items[item.id] = item : get().items.push(item);
-                    upsertItem: (item: IItem) => set(state => {
-                        try {
-                            state.items[item.id] = item
-                        } catch (error) {
-                            state.items.push(item);
-                        }
-                    }),
-                    // TODO: using the index will introduce bugs when deleteItem is being utilized, Solution: maybe use dictionary instead of Array!
-                    // deleteItem: (item: IItem) => delete get().items[item.id],
-                    deleteItem: (item: IItem) => set(state => { state.items = state.items.filter(_item => _item.id !== item.id) }),
-                    count: () => get().items.length,
-                    total: () => get().items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+                    upsertItem: (item: IItem) => set(state => { state.items[item.id] = item }),
+                    deleteItem: (item: IItem) => set(state => { delete state.items[item.id] }),
+                    count: () => Object.keys(get().items).length,
+                    total: () => Object.values(get().items).reduce((sum, item) => sum + item.price * item.quantity, 0),
                     clear: () => set(initialState),
                     setStore: (storeState: IStoreState) => set(storeState),
                 }), {

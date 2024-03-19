@@ -1,6 +1,7 @@
 import { Button, Container, Drawer, Grid, TextField } from '@mui/material';
 import AutoCompleteTextField from './AutoCompleteTextField';
 import { IItem, useItemStore } from '../store/useItemStore';
+import newId from '../utils/newId';
 
 interface IProps {
     isOpen: boolean;
@@ -10,7 +11,7 @@ interface IProps {
 
 
 export default function ({ isOpen, close, selectedItem }: IProps) {
-    const { upsertItem, count } = useItemStore();
+    const { upsertItem } = useItemStore();
 
     const handleAdd = (event: React.FormEvent) => {
         event.preventDefault();
@@ -20,7 +21,7 @@ export default function ({ isOpen, close, selectedItem }: IProps) {
             ...selectedItem,
             price: Number(formData.get('price')),
         } : {
-            id: count(),
+            id: newId(formData.get('itemName') as string),
             name: formData.get('itemName') as string,
             quantity: Number(formData.get('quantity')),
             price: 0,

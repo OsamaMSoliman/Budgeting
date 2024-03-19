@@ -16,12 +16,8 @@ export default () => {
         setIsBottomDrawerOpen(true);
     };
 
-    const nodes = items.map((item, index) => (
-        <Item
-            key={index}
-            {...item}
-            onClick={handleItemClicked}
-        />
+    const nodes = Object.entries(items).map(([id, item]) => (
+        <Item key={id} {...item} onClick={handleItemClicked} />
     ));
 
     return (
