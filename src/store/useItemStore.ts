@@ -47,7 +47,7 @@ export const useItemStore = create<IStoreState & IStoreActions>()(
                     }),
                     // TODO: using the index will introduce bugs when deleteItem is being utilized, Solution: maybe use dictionary instead of Array!
                     // deleteItem: (item: IItem) => delete get().items[item.id],
-                    deleteItem: (item: IItem) => set(state => delete state.items[item.id]),
+                    deleteItem: (item: IItem) => set(state => { delete state.items[item.id] }),
                     count: () => get().items.length,
                     total: () => get().items.reduce((sum, item) => sum + item.price * item.quantity, 0),
                     clear: () => set(initialState),
