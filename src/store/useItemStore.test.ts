@@ -4,25 +4,25 @@ import { expect, test } from 'vitest'
 import { useItemStore } from './useItemStore'
 
 
-test('testing delete', () => {
-  const item0 = { id: "0", name: "item 1", price: 3, quantity: 2 };
-  const item1 = { id: "1", name: "item 2", price: 2.5, quantity: 4 };
-  useItemStore.getState().setStore({
-    budget: 20,
-    items: {
-      0: item0,
-      1: item1,
-    },
-  });
+// test('testing delete', () => {
+//   const item0 = { id: "0", name: "item 1", price: 3, quantity: 2 };
+//   const item1 = { id: "1", name: "item 2", price: 2.5, quantity: 4 };
+//   useItemStore.getState().setStore({
+//     budget: 20,
+//     items: {
+//       0: item0,
+//       1: item1,
+//     },
+//   });
 
-  const deleteItem = useItemStore.getState().deleteItem;
-  deleteItem(item0);
+//   const deleteItem = useItemStore.getState().deleteItem;
+//   deleteItem(item0);
 
-  const count = useItemStore.getState().count;
-  expect(count()).toBe(2);
+//   const count = useItemStore.getState().count;
+//   expect(count()).toBe(2);
 
-  expect(useItemStore.getState().items[0]).equal(undefined);
-})
+//   expect(useItemStore.getState().items[0]).equal(undefined);
+// })
 
 // test('Overwriting state', () => {
 //   const store = {

@@ -1,6 +1,6 @@
 import { Button, Container, Drawer, Grid, TextField } from '@mui/material';
 import AutoCompleteTextField from './AutoCompleteTextField';
-import { IItem, useItemStore } from '../store/useItemStore';
+import { IItem, upsertItem, useItemStore } from '../store/useItemStore';
 import newId from '../utils/newId';
 
 interface IProps {
@@ -11,7 +11,6 @@ interface IProps {
 
 
 export default function ({ isOpen, close, selectedItem }: IProps) {
-    const { upsertItem } = useItemStore();
 
     const handleAdd = (event: React.FormEvent) => {
         event.preventDefault();

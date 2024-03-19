@@ -1,10 +1,9 @@
 import { AppBar, Paper, TextField, Toolbar, Typography } from "@mui/material";
-import { useItemStore } from "../store/useItemStore";
+import { setBudget, useItemStore } from "../store/useItemStore";
 import { useState } from "react";
 
 export default () => {
     const budget = useItemStore(state => state.budget);
-    const setBudget = useItemStore(state => state.setBudget);
     const total = useItemStore(state => state.total)();
     const color = total < budget ? "success" : total == budget ? "warning" : "error";
     const [edit, setEdit] = useState(budget === 0);

@@ -3,12 +3,11 @@ import ShareIcon from '@mui/icons-material/Share';
 import { Button, Container, Divider, Paper, Stack, TextField } from "@mui/material";
 import { useState } from "react";
 import AlertToast from "../components/AlertToast";
-import { useItemStore } from "../store/useItemStore";
+import { setStore, useItemStore } from "../store/useItemStore";
 
 export default () => {
 
     const store = useItemStore();
-    const setStore = useItemStore(state => state.setStore);
 
     const [alert, setAlert] = useState<{
         isVisible: boolean,
