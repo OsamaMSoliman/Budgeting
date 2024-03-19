@@ -5,6 +5,7 @@ import Fab from "../components/Fab";
 import Item from "../components/Item";
 import BottomItemsDrawer from "../components/BottomItemsDrawer";
 import { IItem, useItemStore } from "../store/useItemStore";
+import { Collapse } from "@mui/material";
 
 export default () => {
     const [isBottomDrawerOpen, setIsBottomDrawerOpen] = useState<boolean>(false);
@@ -17,7 +18,9 @@ export default () => {
     };
 
     const nodes = Object.entries(items).map(([id, item]) => (
-        <Item key={id} {...item} onClick={handleItemClicked} />
+        <Collapse key={id}>
+            <Item {...item} onClick={handleItemClicked} />
+        </Collapse>
     ));
 
     return (
