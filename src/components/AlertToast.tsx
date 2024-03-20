@@ -1,4 +1,6 @@
-import { Alert, AlertColor, Snackbar } from "@mui/material"
+import { AlertColor } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 
 interface IProps {
     isVisible: boolean,

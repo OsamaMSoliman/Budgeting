@@ -1,5 +1,6 @@
 import { Add } from "@mui/icons-material";
-import { Fab, Zoom } from "@mui/material";
+import Fab from "@mui/material/Fab";
+import Zoom from "@mui/material/Zoom";
 
 interface IProps {
     onClick: React.MouseEventHandler<HTMLButtonElement>

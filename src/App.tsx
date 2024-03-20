@@ -1,8 +1,8 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
-import Page404 from "./pages/Page404";
-import ItemsPage from "./pages/ItemsPage";
 import ExportImportPage from "./pages/ExportImportPage";
+import ItemsPage from "./pages/ItemsPage";
+import Page404 from "./pages/Page404";
 
 export default () => (
   <HashRouter>

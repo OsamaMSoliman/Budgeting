@@ -1,14 +1,12 @@
-import { Check } from '@mui/icons-material';
-import {
-    Avatar,
-    Badge,
-    Grid,
-    ListItem,
-    ListItemButton,
-    ListItemText,
-    Paper,
-    Typography,
-} from '@mui/material';
+import Check from '@mui/icons-material/Check';
+import Avatar from '@mui/material/Avatar';
+import Badge from '@mui/material/Badge';
+import Grid from '@mui/material/Grid';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import { IItem } from '../store/useItemStore';
 
 interface IProps {

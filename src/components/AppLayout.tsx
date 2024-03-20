@@ -1,5 +1,5 @@
-import BottomNavigationBar from './BottomNavigationBar';
 import { Outlet } from 'react-router-dom';
+import BottomNavigationBar from './BottomNavigationBar';
 
 export default () => (
     <>

@@ -1,4 +1,4 @@
-import { Collapse } from "@mui/material";
+import Collapse from "@mui/material/Collapse";
 import { useState } from "react";
 import BalanceBox from "../components/BalanceBox";
 import BottomItemsDrawer from "../components/BottomItemsDrawer";

@@ -1,4 +1,4 @@
-import { List } from '@mui/material';
+import List from '@mui/material/List';
 import { ReactNode } from 'react';
 import { TransitionGroup } from 'react-transition-group';
 
