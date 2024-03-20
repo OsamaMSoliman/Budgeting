@@ -1,14 +1,18 @@
-import { Autocomplete, TextField, darken, lighten, styled } from "@mui/material";
+import { darken, lighten, styled } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
 import { useItemStore } from "../store/useItemStore";
 
 interface IProps {
     name: string;
     type: string;
     label: string;
+    defaultValue?: string;
 }
 
 export default (textFieldProps: IProps) => {
-    const { items } = useItemStore();
+    const items = useItemStore(state => state.items);
+    const { defaultValue, ...rest } = textFieldProps;
 
     return (
         <Autocomplete
@@ -17,13 +21,14 @@ export default (textFieldProps: IProps) => {
             disableClearable
             options={Object.values(items).map((item) => item.name).sort((a, b) => a[0].localeCompare(b[0]))}
             groupBy={(option) => option[0].toUpperCase()}
-            renderInput={(params) => <TextField {...params} {...textFieldProps} />}
+            renderInput={(params) => <TextField {...params} {...rest} />}
             renderGroup={(params) => (
                 <li key={params.key}>
                     <GroupHeader>{params.group}</GroupHeader>
                     <GroupItems>{params.children}</GroupItems>
                 </li>
             )}
+            defaultValue={defaultValue}
         />
     );
 };
