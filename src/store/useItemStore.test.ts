@@ -1,7 +1,7 @@
 // https://docs.pmnd.rs/zustand/guides/testing#setting-up-zustand-for-testing
 
-import { expect, test } from 'vitest'
-import { useItemStore } from './useItemStore'
+// import { expect, test } from 'vitest'
+// import { useItemStore } from './useItemStore'
 
 
 // test('testing delete', () => {
