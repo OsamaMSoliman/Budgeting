@@ -18,8 +18,9 @@ const initialState: {
 };
 
 interface IComputedValues {
-    count: () => number;
-    total: () => number;
+    countItems: () => number;
+    countLeft: () => number;
+    totalSum: () => number;
 }
 
 export const useItemStore = create<typeof initialState & IComputedValues>()(
@@ -28,17 +29,19 @@ export const useItemStore = create<typeof initialState & IComputedValues>()(
             devtools(
                 (_, get) => ({
                     ...initialState,
-                    count: () => Object.keys(get().items).length,
-                    total: () => Object.values(get().items).reduce((sum, item) => sum + item.price * item.quantity, 0),
+                    countItems: () => Object.keys(get().items).length,
+                    countLeft: () => Object.values(get().items).reduce((sum, item) => item.price === 0 ? sum + 1 : sum, 0),
+                    totalSum: () => Object.values(get().items).reduce((sum, item) => sum + item.price * item.quantity, 0),
                 }), {
                 enabled: import.meta.env.DEV
             })
         ), {
         name: "BUDGETING_CHECKOUT_KEY",
+        version: 1,
     })
 );
 
-export const clear = () => useItemStore.setState(initialState);
+export const clearStore = () => useItemStore.setState(initialState);
 export const setBudget = (budget: number) => useItemStore.setState({ budget });
 export const upsertItem = (item: IItem) => useItemStore.setState(state => { state.items[item.id] = item; });
 export const deleteItem = (item: IItem) => useItemStore.setState(state => { delete state.items[item.id] });
