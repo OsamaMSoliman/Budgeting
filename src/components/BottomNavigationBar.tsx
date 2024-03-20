@@ -1,19 +1,20 @@
-import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import ImportExportIcon from '@mui/icons-material/ImportExport';
-import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Paper from '@mui/material/Paper';
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function BottomNavigationBar() {
     const navigate = useNavigate();
-    const [value, setValue] = useState("/items");
+    const { pathname } = useLocation();
+    const value = pathname === "/" ? "/items" : pathname === "/import" ? "/export" : pathname;
 
     return (
         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={5}>
             <BottomNavigation
                 value={value}
                 onChange={(_, newValue) => {
-                    setValue(newValue);
                     navigate(newValue);
                 }}
             >
