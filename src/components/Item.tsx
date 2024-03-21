@@ -14,7 +14,7 @@ interface IProps {
 }
 
 export default ({ id, name, quantity, price, onClick, }: IItem & IProps) => (
-    <Paper elevation={3} sx={{ margin: 2 }} >
+    <Paper elevation={3} sx={{ my: 2 }} >
         <ListItem disablePadding>
             <ListItemButton sx={{ p: 0 }} onClick={() => onClick({ id, name, quantity, price })}>
                 <Grid container alignItems="center" gap={1} padding={0}>

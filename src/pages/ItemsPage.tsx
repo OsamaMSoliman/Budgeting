@@ -1,4 +1,5 @@
 import Collapse from "@mui/material/Collapse";
+import Container from "@mui/material/Container";
 import { useState } from "react";
 import BalanceBox from "../components/BalanceBox";
 import BottomItemsDrawer from "../components/BottomItemsDrawer";
@@ -26,9 +27,11 @@ export default () => {
     return (
         <>
             <BalanceBox />
-            <List nodes={nodes} />
-            <Fab onClick={() => handleItemClicked(undefined)} />
-            <BottomItemsDrawer close={() => setIsBottomDrawerOpen(false)} isOpen={isBottomDrawerOpen} selectedItem={selectedItem} />
+            <Container maxWidth="lg">
+                <List nodes={nodes} />
+                <Fab onClick={() => handleItemClicked(undefined)} />
+                <BottomItemsDrawer close={() => setIsBottomDrawerOpen(false)} isOpen={isBottomDrawerOpen} selectedItem={selectedItem} />
+            </Container>
         </>
     );
 }

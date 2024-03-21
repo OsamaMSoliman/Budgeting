@@ -24,7 +24,7 @@ export default () => {
     };
 
     return (
-        <AppBar position="sticky" elevation={24} color={color}>
+        <AppBar position="sticky" elevation={10} color={color}>
             <Toolbar >
                 <Paper sx={{ p: 1, m: 1, flexGrow: 1 }} onClick={() => setEdit(true)}>
                     {
@@ -38,7 +38,7 @@ export default () => {
                     }
                 </Paper>
                 <Badge badgeContent={countItems} color="info" showZero overlap="circular">
-                    <Paper sx={{ p: 1, m: 1, flexGrow: 1 }}>
+                    <Paper sx={{ p: 1, m: 1, flexGrow: 1 }} elevation={8}>
                         <Typography variant="h6" align="center">{countLeft}</Typography>
                     </Paper>
                 </Badge>

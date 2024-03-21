@@ -61,7 +61,7 @@ export default () => {
     }
 
     return (
-        <Container >
+        <Container maxWidth="lg">
             <Stack spacing={4} divider={<Divider />} m={2}>
                 <Paper elevation={4} >
                     <TextField

@@ -91,7 +91,7 @@ const NameAndQuantity = ({ selectedItem }: { selectedItem?: IItem }) => (
             <AutoCompleteTextField name="itemName" type="search" label="Item name" defaultValue={selectedItem?.name} />
         </Grid>
         <Grid item xs={3}>
-            <TextField name="quantity" type="number" label="Quantity" defaultValue={selectedItem ? selectedItem.quantity : 1} />
+            <TextField name="quantity" type="number" label="Quantity" fullWidth defaultValue={selectedItem ? selectedItem.quantity : 1} />
         </Grid>
     </>
 );
