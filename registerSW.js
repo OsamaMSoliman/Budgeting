@@ -1,1 +1,7 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/Budgeting/sw.js', { scope: '/Budgeting/' })})}
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/CheckOutCheck/sw.js', { scope: '/CheckOutCheck/' })
+            .then(console.log)
+            .catch(console.log)
+    })
+}
